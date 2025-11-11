@@ -17,5 +17,5 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsEnum(KnowUs)
-  knowUs: KnowUs;
+  knowUs?: KnowUs;
 }

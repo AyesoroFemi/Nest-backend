@@ -1,4 +1,9 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 export enum KnowUs {
   GOOGLE = 'google',
@@ -16,7 +21,7 @@ export class User {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -28,4 +33,7 @@ export class User {
     default: KnowUs.FACEBOOK,
   })
   knowUs: KnowUs;
+
+  @CreateDateColumn()
+  createdAt: Date;
 }
