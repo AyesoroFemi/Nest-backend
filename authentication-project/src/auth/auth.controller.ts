@@ -1,16 +1,13 @@
-import {
-  Body,
-  Controller,
-  // Get,
-  Post,
-  Request,
-  // UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Get, Post, Request } from '@nestjs/common';
 import { AuthService } from './auth.service';
-// import { JwtAuthGuard } from './jwt-auth.guard';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/auth.dto';
+import { Public } from './public.decorator';
+
+interface RequestWithUser extends Request {
+  user: { userId: string; email: string };
+}
 
 @Controller('auth')
 export class AuthController {
@@ -19,20 +16,21 @@ export class AuthController {
     private usersService: UsersService,
   ) {}
 
+  @Public()
   @Post('register')
   async register(@Body() body: CreateUserDto) {
     const user = await this.usersService.create(body);
     return user;
   }
 
+  @Public()
   @Post('login')
   async login(@Body() body: LoginDto) {
     return this.authService.login(body);
   }
 
-  // @UseGuards(JwtAuthGuard)
-  // @Get('profile')
-  // getProfile(@Request() req) {
-  //   return (req as any).user;
-  // }
+  @Get('profile')
+  getProfile(@Request() req: RequestWithUser) {
+    return req.user;
+  }
 }
