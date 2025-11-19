@@ -5,7 +5,7 @@ import { ExtractJwt, Strategy } from 'passport-jwt';
 // Type assertions for passport-jwt
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(Strategy) {
+export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
   constructor() {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -15,6 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   validate(payload: any) {
-    return { userId: (payload as any).sub, email: (payload as any).email };
+    return { userId: payload.sub, email: payload.email };
   }
 }

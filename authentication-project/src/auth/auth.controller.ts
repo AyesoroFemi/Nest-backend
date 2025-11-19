@@ -1,13 +1,10 @@
-import { Body, Controller, Get, Post, Request } from '@nestjs/common';
+import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import { LoginDto } from './dto/auth.dto';
-import { Public } from './public.decorator';
-
-interface RequestWithUser extends Request {
-  user: { userId: string; email: string };
-}
+import { Public } from './decorators/public.decorator';
+// import { LocalAuthGuard } from './guards/local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -17,6 +14,7 @@ export class AuthController {
   ) {}
 
   @Public()
+  // @UseGuards(LocalAuthGuard)
   @Post('register')
   async register(@Body() body: CreateUserDto) {
     const user = await this.usersService.create(body);
@@ -27,10 +25,5 @@ export class AuthController {
   @Post('login')
   async login(@Body() body: LoginDto) {
     return this.authService.login(body);
-  }
-
-  @Get('profile')
-  getProfile(@Request() req: RequestWithUser) {
-    return req.user;
   }
 }

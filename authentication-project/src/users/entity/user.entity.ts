@@ -34,6 +34,12 @@ export class User {
   })
   knowUs: KnowUs;
 
+  @Column({ default: 'inactive' })
+  accountStatus: 'active' | 'inactive';
+
+  @Column({ nullable: true })
+  emailVerifiedAt: Date;
+
   @CreateDateColumn()
   createdAt: Date;
 }
