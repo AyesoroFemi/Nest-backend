@@ -1,0 +1,7 @@
+POST http://localhost:3000/wallet
+content-type: application/json
+
+
+{
+    "userId": "c1fa1540-b72e-4fcc-9751-3aa7b2d6d79c"
+}

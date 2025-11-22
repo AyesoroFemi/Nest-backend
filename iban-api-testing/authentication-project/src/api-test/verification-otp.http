@@ -1,0 +1,4 @@
+POST http://localhost:3000/users/verification-otp
+content-type: application/json
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiMzk2OTMyNy05NmViLTQzZDAtYjdiZS1kN2ViNzUyNTY4YmQiLCJlbWFpbCI6IkphbWVzQGdtYWlsLmNvbSIsImlhdCI6MTc2MzQ1NTA5OSwiZXhwIjoxNzYzNTQxNDk5fQ.j1BKow0n4-10IS2b0-xsbRfoEUwWCblQMhq7-NUb8iU

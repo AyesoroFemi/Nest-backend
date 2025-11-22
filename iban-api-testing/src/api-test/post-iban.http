@@ -1,0 +1,12 @@
+curl -X POST http://localhost:3000/bank/validate \
+  -H "Content-Type: application/json" \
+  -d '{"currency":"EUR","iban":"DE89370400440532013000"}'
+
+# curl -X POST http://localhost:3000/bank/validate \
+#   -H "Content-Type: application/json" \
+#   -d '{"currency":"USD","swift":"DEUTDEFF"}'
+
+# curl -X POST http://localhost:3000/bank/validate \
+#   -H "Content-Type: application/json" \
+#   -d '{"currency":"GBP","sortCode":"400302","accountNumber":"12345678"}'
+

@@ -1,0 +1,8 @@
+POST http://localhost:3000/wallet/deposit
+content-type: application/json
+
+
+{
+    "walletId": "0413dfaa-e95a-4ea4-97ed-97fb881bc07f",
+    "amount":8906
+}
