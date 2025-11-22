@@ -122,4 +122,11 @@ export class UsersService {
 
     return true;
   }
+  async sendTestEmail() {
+    await this.messageService.sendEmail({
+      subject: 'MyApp - Test Email',
+      recipients: [{ name: 'Kemi', address: 'XXXXXXXXXXXXX' }],
+      html: `<p>Hi Kemi,</p><p>This is a test email</p><p>Regards,<br />MyApp</p>`,
+    });
+  }
 }

@@ -1,0 +1,3 @@
+# GET http://localhost:3000/users/test-email
+POST http://localhost:3000/users/verify/:otp
+content-type: application/json

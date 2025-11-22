@@ -4,11 +4,19 @@ import { UsersService } from './users.service';
 import { CurrentUser } from './current-user.decorator';
 import { User } from './entity/user.entity';
 import { NoAccountGuard } from 'src/auth/decorators/no-account-guard.decorator';
+import { Public } from 'src/auth/decorators/public.decorator';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
+  @Public()
+  @Get('test-email')
+  async testEmail() {
+    return this.userService.sendTestEmail();
+  }
+
+  @Public()
   @Get()
   public getAllUsers() {
     return this.userService.getAllUsers();
